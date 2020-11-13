@@ -1,0 +1,25 @@
+<header class="mb-4">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-warning">
+   <a class="navbar-brand" href="/"><h2>TabeGram</h2></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <% if logged_in? %>
+          <li class="nav-item"><%= link_to 'Users', users_path, class: 'nav-link  bg-light mx-1 rounded text-secondary' %></li>
+          <li class="nav-item"><%= link_to 'New Post', new_post_path, class: 'nav-link bg-light mx-1 rounded text-secondary' %></li>
+          <li class="nav-item"><%= link_to 'My Profile', user_path(current_user), class: 'nav-link bg-light mx-1 rounded text-secondary' %></li>
+          <li class="nav-item"><%= link_to 'logout', logout_path, method: :delete, class: 'nav-link  bg-light mx-1 rounded text-secondary' %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "signup", signup_path, class: "nav-link bg-light mx-1 rounded text-secondary" %></li>
+          <li class="nav-item"><%= link_to "login", login_path, class: "nav-link bg-light mx-1 rounded text-secondary" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+

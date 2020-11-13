@@ -1,0 +1,52 @@
+<div class="row">
+  <aside class="col-sm-4 text-center">
+    <div class="">
+      <div class="image_profile">
+        <% if @user.image_profile? %>
+          <%= image_tag @user.image_profile.url, size: "250x250", class: "rounded-circle"  %>
+        <% else %>
+        <img class="mr-2 rounded-circle"" src="<%= gravatar_url(@user, { size: "250x250" }) %>" alt="">
+        <% end %>
+      </div>
+      <h3><%= @user.name %></h3>
+    </div>
+    <%= render 'relationships/follow_button', user: @user %>
+  </aside>
+  <div class="col-sm-5">
+    <div class="profile-text">
+      <h3>PROFILE</h3>
+      <p><%= @user.profile %></p>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :name, 'Name' %>
+        <%= f.text_field :name, class: 'form-control' %>
+        
+      <div class="form-group">
+        <%= f.label :email, 'Email' %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :password, 'Password' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :profile, 'Profile' %>
+        <%= f.text_area :profile, class: 'form-control', rows: 6 %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :image_profile, 'Profile_image' %>
+        <%= f.file_field :image_profile %>
+      </div>
+    
+      <%= f.submit "Complete", class: "btn btn-primary btn-block" %>
+    <% end %>
+    <%= link_to "Back to Toppage", root_path, class: "btn btn-white btn-block border" %>
+    <%= link_to "DELETE PROFILE" , @user, method: :delete, data: { confirm: "YOU REALLY DELETE YOUR PROFILE？" }, class: "btn btn-danger btn-block" %>
+  </div>
+</div>

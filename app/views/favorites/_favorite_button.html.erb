@@ -1,0 +1,15 @@
+<% if current_user.favorite?(post) %>
+  <%= form_with(model: current_user.favorites.find_by(post_id: post.id),  method: :delete) do |f| %>
+    <%= hidden_field_tag :post_id, post.id %>
+    <%= button_tag( class: "btn btn-sm") do %>
+      <%= content_tag :span %><i class="fas fa-heart like-heart"></i>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= form_with(model: current_user.favorites.build) do |f| %>
+    <%= hidden_field_tag :post_id, post.id %>
+    <%= button_tag( class: "btn btn-sm ") do %>
+      <%= content_tag :span %><i class="far fa-heart unlike-heart"></i>
+    <% end %>
+  <% end %>
+<% end %>

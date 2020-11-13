@@ -1,0 +1,25 @@
+<div class="posts">
+  <ul class="list-unstyled">
+    <% posts.each do |post| %>
+      <li class="media">
+        <div class="image mr-2 mb-3">
+          <%= link_to post_path(post) do %>
+            <%= image_tag post.image.url , size: "50x50" if post.image? %>
+          <% end %>
+        </div>
+        <div class="media-body">
+          <div>
+            <%= truncate(post.content, length: 20) do %>
+              <%= link_to "read more", post_path(post) %>
+            <% end %>
+          </div>
+          <div id="favorite__button--<%= post.id %>">
+            <%= render 'favorites/favorite_button', post: post %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate posts %>
+</div>
+

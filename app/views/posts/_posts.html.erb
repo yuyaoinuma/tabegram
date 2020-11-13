@@ -1,0 +1,37 @@
+<div class="row" >
+  <% @posts.each do |post| %>
+  <div class="col-md-4 py-4">
+    <div class="card">
+      <div class="top-image text-center">
+        <%= link_to post_path(post) do %>
+          <%= image_tag post.image.url , size: "349x350" if post.image? %>
+        <% end %>
+      </div>
+      <div class="content-body">
+        <p class="card-text border", style="height:100px">
+        <%= truncate(post.content, length: 80) do %>
+          <%= link_to "read more", post_path(post) %>
+        <% end %>
+      </div>
+      <div class="card-content", style="height:60px">
+        <div class="user">
+          <div class="username">
+            <h3><%= link_to post.user.name, user_path(post.user) %></h3>
+          </div>
+        </div>
+        <div class="favorite-button-top">
+          <div id="favorite__button--<%= post.id %>">
+             <%= render 'favorites/favorite_button', post: post %>
+          </div>
+        </div>
+      </div>
+      <div class="created_at">
+        <span class="text-muted", style="font-size:10px"><%= post.created_at %></span>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <%= paginate @posts %>
+</div>
+
+

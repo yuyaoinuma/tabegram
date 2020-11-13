@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm-4">
+    <div class="image_post">
+      <%= image_tag  @post.image.url , size: "350x350" %>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="content">
+      <p>DESCRIPTION :</p>
+      <p><%= @post.content %></p>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <%= form_with(model: @post, local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      <%= f.label :content, 'CONTENT:' %>
+      <%= f.text_area :content, class: 'form-control', rows: 13 %>
+      <div class="form-group">
+        <%= f.label :image, 'Post-image:' %>
+        <%= f.file_field :image %>
+      <div class="py-3">
+        <%= f.submit "Complete", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+    <%= link_to "Back to Toppage", root_path, class: "btn btn-white border btn-block" %>
+    <%= link_to "DELETE POST" , @post, method: :delete, data: { confirm: "YOU REALLY DELETE YOUR POST？" }, class: "btn btn-danger btn-block" %>
+  </div>
+</div>

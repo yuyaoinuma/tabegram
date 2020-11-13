@@ -1,0 +1,29 @@
+<dic class="row">
+  <div class="col-sm-4">
+    <div class="image">
+      <%= image_tag  @post.image.url , size: "350x350" %>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="content">
+      <p>DESCRIPTION :</p>
+      <p><%= simple_format(@post.content) %></p>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <div class="profile-image">
+      
+    </div>
+    <div id="favorite__button--<%= @post.id %>">
+      <%= render 'favorites/favorite_button', post: @post %>
+    </div>
+    <% if current_user == @post.user %>
+    　<%= link_to "edit", edit_post_path, class: "btn btn-primary btn-block" %>
+      <%= link_to "Delete", @post,  method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-block' %>
+    <% end %> 
+  </div>
+</dic>
+
+
+
+

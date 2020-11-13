@@ -1,0 +1,22 @@
+<aside class="col-sm-3 text-center">
+  <div class="">
+    <div class="image_profile">
+      <% if @user.image_profile? %>
+        <%= image_tag @user.image_profile.url, size: "250x250", class: "rounded-circle"  %>
+      <% else %>
+      <img class="mr-2 rounded-circle"" src="<%= gravatar_url(@user, { size: "250x250" }) %>" alt="">
+      <% end %>
+    </div>
+    <h3><%= @user.name %></h3>
+  </div>
+  <div id="fallow__button--<%= @user.id %>">
+    <%= render 'relationships/follow_button', user: @user %>
+  </div> 
+  <% if current_user == @user %>
+    <%= link_to "Edit Myprofile", edit_user_path(current_user), class: "btn btn-light" %>
+  <% end %>
+</aside>
+<div class="col-sm-5">
+  <h3>PROFILE</h3>
+  <p><%= @user.profile %></p>
+</div>

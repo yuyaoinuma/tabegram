@@ -1,0 +1,17 @@
+<% unless current_user == user %>
+  <% if current_user.following?(user) %>
+    <%= form_with(model: current_user.relationships.find_by(follow_id: user.id), method: :delete) do |f| %>
+      <%= hidden_field_tag :follow_id, user.id %>
+      <%= button_tag( class: "btn btn-sm ") do %>
+        <%= content_tag :span %><i class="fas fa-star follow-star"></i>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form_with(model: current_user.relationships.build) do |f| %>
+      <%= hidden_field_tag :follow_id, user.id %>
+      <%= button_tag( class: "btn btn-sm ") do %>
+        <%= content_tag :span %><i class="far fa-star unfollow-star"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

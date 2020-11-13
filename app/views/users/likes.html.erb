@@ -1,0 +1,7 @@
+<div class="row">
+  <%= render "users/show.user" %>
+  <div class="col-sm-4">
+    <%= render "layouts/navtabs" %>
+    <%= render 'posts/favorite.posts.count', posts: @posts %>
+  </div>
+</div>
